@@ -14,24 +14,19 @@ const MESSAGE_XP_RATE_LIMIT_WINDOW_MS = 10000;
 
 export default {
   name: Events.MessageCreate,
-  async execute(message, client) {
-  try {
+  if (message.author.bot || !message.guild) return;
 
-    if (message.author.bot || !message.guild) return;
+const mensajes = [
+  "Take this!",
+  "PAY ATTENTION!",
+  "This is a WASTE of my time!"
+];
 
-    console.log("EVENTO FUNCIONANDO");
-    console.log("Mensaje:", message.content);
-
-    if (message.mentions.has(client.user)) {
-      await message.channel.send("POWER DETECTED.");
-      return;
-    }
-
-    if (message.content.toLowerCase().startsWith("hola")) {
-      await message.channel.send("HALT.");
-      return;
-    }
-
+if (message.content.toLowerCase().startsWith("hola")) {
+  const aleatorio = Math.floor(Math.random() * mensajes.length);
+  await message.channel.send(mensajes[aleatorio]);
+  return;
+}
     await handleLeveling(message, client);
 
   } catch (error) {
