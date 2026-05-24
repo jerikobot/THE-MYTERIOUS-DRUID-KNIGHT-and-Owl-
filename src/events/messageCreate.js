@@ -19,13 +19,18 @@ export default {
       
       if (message.author.bot || !message.guild) return;
       
-      const mensajes = ["hola", "callate 100 años, w", "ok."];
-      const aleatorio = Math.floor(Math.random() * mensajes.length);
+      const mensajes = [
+  "hola",
+  "por eso te funan.",
+  "callate 100 años, w",
+  "ok.",
+];
 
-      if (message.content.toLowerCase().startsWith("hola")) {
-        message.channel.send(mensajes[aleatorio]);
-      }
+if (!message.mentions.has(client.user)) return;
 
+const aleatorio = Math.floor(Math.random() * mensajes.length);
+
+message.channel.send(mensajes[aleatorio]);
       await handleLeveling(message, client);
     } catch (error) {
       logger.error('Error in messageCreate event:', error);
