@@ -15,18 +15,16 @@ const MESSAGE_XP_RATE_LIMIT_WINDOW_MS = 10000;
 export default {
   name: Events.MessageCreate,
   async execute(message, client) {
-  try {
+    try {
+      
+      if (message.author.bot || !message.guild) return;
+      const mensajes = ["hola", "callate 100 años, w", "ok."];
+      const aleatorio = Math.floor(Math.random() * mensajes.length);
 
-    if (message.author.bot || !message.guild) return;
-
-    client.on("message" , msg => {
-    var Mensajes = ["Take this!", "PAY ATTENTION!", "This is a WASTE of my time!"];
-    var aleatorio = Math.floor(Math.random()*(Mensajes.length));
-    if(msg.content.startsWith("hola")){
-       msg.channel.send(Mensajes[aleatorio]);
+      if (message.content.toLowerCase().startsWith("hola")) {
+        message.channel.send(mensajes[aleatorio]);
       }
-  });
-
+      
       await handleLeveling(message, client);
     } catch (error) {
       logger.error('Error in messageCreate event:', error);
