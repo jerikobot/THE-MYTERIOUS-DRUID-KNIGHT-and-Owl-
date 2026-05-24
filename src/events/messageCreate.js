@@ -17,13 +17,12 @@ export default {
   async execute(message, client) {
     try {
       
-      if (message.author.bot || !message.guild) return;
-      const mensajes = ["hola", "callate 100 años, w", "ok."];
-      const aleatorio = Math.floor(Math.random() * mensajes.length);
+      if (message.content.toLowerCase() === "hola") {
+  const mensajes = ["hola", "ok.", "callate 100 años, w", "This is a WASTE of my time!"];
+  const aleatorio = Math.floor(Math.random() * mensajes.length);
 
-      if (message.content.toLowerCase().startsWith("hola")) {
-        message.channel.send(mensajes[aleatorio]);
-      }
+  await message.channel.send(mensajes[aleatorio]);
+}
       
       await handleLeveling(message, client);
     } catch (error) {
