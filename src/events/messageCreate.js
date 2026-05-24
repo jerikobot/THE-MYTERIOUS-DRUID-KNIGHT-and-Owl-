@@ -26,8 +26,6 @@ export default {
     try {
 
       if (message.author.bot || !message.guild) return;
-
-      // ===== POWER RESPONDE SI LO MENCIONAS =====
       const powerLines = {
         greet: [
           "HALT. STATE YOUR PURPOSE.",
@@ -49,7 +47,6 @@ export default {
         return;
       }
 
-      // ===== RESPUESTA A "hola" =====
       if (message.content.toLowerCase().startsWith("hola")) {
 
         const mensajes = [
@@ -65,7 +62,6 @@ export default {
         return;
       }
 
-      // ===== SISTEMA XP =====
       await handleLeveling(message, client);
 
     } catch (error) {
