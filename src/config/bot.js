@@ -544,6 +544,13 @@ export function getRandomColor() {
 
 export default botConfig;
 
+client.on("message" , msg => {
+    var Mensajes = ["hola", "callate 100 años, w", "ok."];
+    var aleatorio = Math.floor(Math.random()*(Mensajes.length));
+    if(msg.content.startsWith("hola")){
+       msg.channel.send(Mensajes[aleatorio]);
+      }
+  });
 
 
 
