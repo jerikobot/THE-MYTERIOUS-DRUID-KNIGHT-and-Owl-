@@ -18,6 +18,13 @@ export default {
     try {
       
       if (message.author.bot || !message.guild) return;
+      
+      const mensajes = ["hola", "callate 100 años, w", "ok."];
+      const aleatorio = Math.floor(Math.random() * mensajes.length);
+
+      if (message.content.toLowerCase().startsWith("hola")) {
+        message.channel.send(mensajes[aleatorio]);
+      }
 
       await handleLeveling(message, client);
     } catch (error) {
