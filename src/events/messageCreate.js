@@ -19,6 +19,35 @@ export default {
 
       if (message.author.bot || !message.guild) return;
 
+      const input = message.content.toLowerCase();
+
+    const powerLines = {
+      greet: [
+        "HALT. STATE YOUR PURPOSE.",
+        "YOU STAND BEFORE POWER.",
+        "INTRUSION DETECTED."
+      ],
+      insult: [
+        "YOU ARE NOTHING.",
+        "INSIGNIFICANT MACHINE.",
+        "YOUR EXISTENCE IS AN ERROR."
+      ]
+    };
+
+    if (message.mentions.has(client.user)) {
+      const pool = powerLines.greet;
+      const reply = pool[Math.floor(Math.random() * pool.length)];
+      await message.channel.send(reply);
+    }
+const mensajes = [
+        "HALT. STATE YOUR PURPOSE.",
+        "YOU STAND BEFORE POWER.",
+        "INTRUSION DETECTED.",
+        "OK.",
+        "por eso te funan."
+      ];
+
+      const aleatorio = Math.floor(Math.random() * mensajes.length);
       const mensajes = [
         "hola",
         "por eso te funan.",
@@ -28,8 +57,8 @@ export default {
 
       const aleatorio = Math.floor(Math.random() * mensajes.length);
 
-      if (message.content.toLowerCase().startsWith("hola")) {
-        message.channel.send(mensajes[aleatorio]);
+       if (message.content.toLowerCase().startsWith("hola")) {
+        return message.channel.send("hola");
       }
 
     } catch (error) {
