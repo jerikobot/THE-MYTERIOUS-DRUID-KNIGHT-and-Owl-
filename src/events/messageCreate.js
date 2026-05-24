@@ -16,16 +16,27 @@ export default {
   name: Events.MessageCreate,
   async execute(message, client) {
     try {
-      
-      if (message.author.bot || !message.guild) return;
-      
-      const mensajes = [
-  "hola",
-  "por eso te funan.",
-  "callate 100 años, w",
-  "ok.",
-];
 
+      if (message.author.bot || !message.guild) return;
+
+      const mensajes = [
+        "hola",
+        "por eso te funan.",
+        "callate 100 años, w",
+        "ok.",
+      ];
+
+      const aleatorio = Math.floor(Math.random() * mensajes.length);
+
+      if (message.content.toLowerCase().startsWith("hola")) {
+        message.channel.send(mensajes[aleatorio]);
+      }
+
+    } catch (error) {
+      console.error(error);
+    }
+  }
+};
 if (!message.mentions.has(client.user)) return;
 
 const aleatorio = Math.floor(Math.random() * mensajes.length);
