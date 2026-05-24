@@ -20,69 +20,59 @@ export default {
       if (message.author.bot || !message.guild) return;
 
       const input = message.content.toLowerCase();
+export default {
+  name: Events.MessageCreate,
+  async execute(message, client) {
+    try {
 
-    const powerLines = {
-      greet: [
-        "HALT. STATE YOUR PURPOSE.",
-        "YOU STAND BEFORE POWER.",
-        "INTRUSION DETECTED."
-      ],
-      insult: [
-        "YOU ARE NOTHING.",
-        "INSIGNIFICANT MACHINE.",
-        "YOUR EXISTENCE IS AN ERROR."
-      ]
-    };
+      if (message.author.bot || !message.guild) return;
 
-    if (message.mentions.has(client.user)) {
-      const pool = powerLines.greet;
-      const reply = pool[Math.floor(Math.random() * pool.length)];
-      await message.channel.send(reply);
-    }
-const mensajes = [
-        "HALT. STATE YOUR PURPOSE.",
-        "YOU STAND BEFORE POWER.",
-        "INTRUSION DETECTED.",
-        "OK.",
-        "por eso te funan."
-      ];
+      // ===== POWER RESPONDE SI LO MENCIONAS =====
+      const powerLines = {
+        greet: [
+          "HALT. STATE YOUR PURPOSE.",
+          "YOU STAND BEFORE POWER.",
+          "INTRUSION DETECTED."
+        ],
+        insult: [
+          "YOU ARE NOTHING.",
+          "INSIGNIFICANT MACHINE.",
+          "YOUR EXISTENCE IS AN ERROR."
+        ]
+      };
 
-      const aleatorio = Math.floor(Math.random() * mensajes.length);
-      const mensajes = [
-        "hola",
-        "por eso te funan.",
-        "callate 100 años, w",
-        "ok.",
-      ];
+      if (message.mentions.has(client.user)) {
+        const pool = powerLines.greet;
+        const reply = pool[Math.floor(Math.random() * pool.length)];
 
-      const aleatorio = Math.floor(Math.random() * mensajes.length);
-
-       if (message.content.toLowerCase().startsWith("hola")) {
-        return message.channel.send("hola");
+        await message.channel.send(reply);
+        return;
       }
 
-    } catch (error) {
-      console.error(error);
-    }
-  }
-};
-if (!message.mentions.has(client.user)) return;
+      // ===== RESPUESTA A "hola" =====
+      if (message.content.toLowerCase().startsWith("hola")) {
 
-const aleatorio = Math.floor(Math.random() * mensajes.length);
+        const mensajes = [
+          "hola",
+          "por eso te funan.",
+          "callate 100 años, w",
+          "ok."
+        ];
 
-message.channel.send(mensajes[aleatorio]);
+        const aleatorio = Math.floor(Math.random() * mensajes.length);
+
+        await message.channel.send(mensajes[aleatorio]);
+        return;
+      }
+
+      // ===== SISTEMA XP =====
       await handleLeveling(message, client);
+
     } catch (error) {
       logger.error('Error in messageCreate event:', error);
     }
   }
 };
-
-
-
-
-
-
 
 
 async function handleLeveling(message, client) {
