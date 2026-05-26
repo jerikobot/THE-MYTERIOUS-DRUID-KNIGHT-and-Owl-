@@ -41,6 +41,9 @@ export default {
           .trim();
 
         const completion = await openai.chat.completions.create({
+         const openai = new OpenAI({
+  apiKey: process.env.sk-...34MA,
+});
           model: "gpt-4o-mini",
           messages: [
             {
