@@ -32,41 +32,6 @@ export default {
 
         await message.channel.send(random);
         return;
-      }
-
-      if (message.mentions.has(client.user)) {
-
-        const userText = message.content
-          .replace(`<@${client.user.id}>`, "")
-          .trim();
-
-        const completion = await openai.chat.completions.create({
-         const openai = new OpenAI({
-  apiKey: process.env.sk-...34MA,
-});
-          model: "gpt-4o-mini",
-          messages: [
-            {
-              role: "system",
-              content: `
-Eres THE MYSTERIOUS DRUID KNIGHT (& OWL) de ULTRAKILL.
-
-Hablas siempre en español.
-
-Dos voces:
-- Knightly: serio, críptico, tipo jefe secreto.
-- OWL: confundido, simple.
-
-Formato obligatorio:
-Knightly: ...
-OWL: ...
-
-Siempre referencia ULTRAKILL.
-              `
-            },
-            {
-              role: "user",
-              content: userText
             }
           ]
         });
