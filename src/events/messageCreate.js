@@ -18,9 +18,9 @@ export default {
     try {
       
       if (message.content.toLowerCase() === "hola") {
-  const mensajes = ["hola", "Full auto.", "Fuller auto.", 
-                    "Knightly: Through the magic of the Druids, I increase my speed! 
-                    Owl: Just fucking hit 'em!"];
+  const mensajes = ["hola", "Knightly: Full auto.", "Knightly: Fuller auto.", 
+                    "Knightly: Through the magic of the Druids, I increase my speed!",
+                    "Owl: Just fucking hit 'em!"];
   const aleatorio = Math.floor(Math.random() * mensajes.length);
 
   await message.channel.send(mensajes[aleatorio]);
