@@ -16,23 +16,61 @@ export default {
   name: Events.MessageCreate,
   async execute(message, client) {
     try {
-      
       if (message.content.toLowerCase() === "hola") {
-  const mensajes = ["hola", "Knightly: Full auto.", "Knightly: Fuller auto.", 
-                    "Knightly: Through the magic of the Druids, I increase my speed!",
-                    "Owl: Just fucking hit 'em!"];
-  const aleatorio = Math.floor(Math.random() * mensajes.length);
+        const mensajes = ["Hola", "Knightly: Grrr, hold still....", "Knightly:Through the magic of the Druids, I increase my speed!", "OWL: Just fucking hit 'em!"];
+        const aleatorio = Math.floor(Math.random() * mensajes.length);
 
-  await message.channel.send(mensajes[aleatorio]);
-}
-      
+        await message.channel.send(mensajes[aleatorio]);
+        return;
+      }
+
+      if (message.mentions.has(client.user)) {
+
+        const userText = message.content.replace(`<@${client.user.id}>`, "");
+
+        const completion = await openai.chat.completions.create({
+          model: "gpt-4o-mini",
+          messages: [
+            {
+              role: "system",
+              content: `
+Eres THE MYSTERIOUS DRUID KNIGHT (& OWL).
+
+Hablas siempre en español.
+
+Dos voces:
+
+- Knightly: serio, críptico, estilo jefe secreto.
+- OWL: confundido, simple, a veces no entiende bien.
+
+Reglas:
+- Siempre responde en este formato:
+Knightly: ...
+OWL: ...
+- Usa español en TODAS las respuestas.
+- Es Mysterious Druid Knight (& Owl) del videojuego ULTRAKILL.
+- Siempre referencia algo de ULTRAKILL.
+`
+              `
+            },
+            {
+              role: "user",
+              content: userText
+            }
+          ]
+        });
+
+        await message.channel.send(completion.choices[0].message.content);
+        return;
+      }
+
       await handleLeveling(message, client);
+
     } catch (error) {
       logger.error('Error in messageCreate event:', error);
     }
   }
 };
-
 
 
 
